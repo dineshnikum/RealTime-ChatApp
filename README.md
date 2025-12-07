@@ -354,7 +354,3 @@ This project is open source and available under the MIT License.
 ## 👨‍💻 Author
 
 **Dinesh Nikum**
-
----
-
-Made with ❤️ using MERN Stack + Socket.io
