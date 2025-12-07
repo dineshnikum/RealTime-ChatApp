@@ -89,7 +89,7 @@ const ChatWindow = () => {
                 : isOnline
                 ? "Online"
                 : otherUser?.lastSeen
-                ? `Last seen ${new Date(otherUser.lastSeen).toLocaleString()}`
+                ? `Last seen ${new Date(otherUser.lastSeen).toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' })} ${new Date(otherUser.lastSeen).toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', hour12: false })}`
                 : "Offline"}
             </p>
           </div>

@@ -35,18 +35,40 @@ export function formatRelativeTime(date) {
     return `${diffInDays}d ago`;
   }
 
-  return messageDate.toLocaleDateString();
+  return messageDate.toLocaleDateString('en-GB', {
+    day: '2-digit',
+    month: '2-digit',
+    year: 'numeric',
+  });
 }
 
 /**
- * Format time
+ * Format time (hour:minutes only)
  */
 export function formatTime(date) {
-  return new Date(date).toLocaleTimeString('en-US', {
-    hour: 'numeric',
+  return new Date(date).toLocaleTimeString('en-GB', {
+    hour: '2-digit',
     minute: '2-digit',
-    hour12: true,
+    hour12: false,
   });
+}
+
+/**
+ * Format date and time (day/month/year hour:minutes)
+ */
+export function formatDateTime(date) {
+  const d = new Date(date);
+  const dateStr = d.toLocaleDateString('en-GB', {
+    day: '2-digit',
+    month: '2-digit',
+    year: 'numeric',
+  });
+  const timeStr = d.toLocaleTimeString('en-GB', {
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: false,
+  });
+  return `${dateStr} ${timeStr}`;
 }
 
 /**
