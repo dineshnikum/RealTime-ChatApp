@@ -1,36 +1,36 @@
-# 💬 Real-Time Chat Application
+﻿# ðŸ’¬ Real-Time Chat Application
 
 A modern, full-stack real-time chat application built with the MERN stack (MongoDB, Express, React, Node.js) and Socket.io for real-time messaging.
 
-## ✨ Features
+## âœ¨ Features
 
 ### Authentication
-- ✅ User signup and login with JWT authentication
-- ✅ Secure password hashing with bcrypt
-- ✅ Token refresh mechanism
-- ✅ Protected routes
+- âœ… User signup and login with JWT authentication
+- âœ… Secure password hashing with bcrypt
+- âœ… Token refresh mechanism
+- âœ… Protected routes
 
 ### Chat Features
-- ✅ One-to-one messaging
-- ✅ Group chat creation
-- ✅ Real-time message delivery
-- ✅ Typing indicators
-- ✅ Online/Offline status
-- ✅ Read receipts (seen by)
-- ✅ Message timestamps
-- ✅ Image upload support (Cloudinary)
-- ✅ Message search
-- ✅ User search
+- âœ… One-to-one messaging
+- âœ… Group chat creation
+- âœ… Real-time message delivery
+- âœ… Typing indicators
+- âœ… Online/Offline status
+- âœ… Read receipts (seen by)
+- âœ… Message timestamps
+- âœ… Image upload support (Cloudinary)
+- âœ… Message search
+- âœ… User search
 
 ### UI/UX
-- ✅ Modern, minimal design (Discord/Telegram-inspired)
-- ✅ Dark/Light theme toggle
-- ✅ Responsive design (mobile-friendly)
-- ✅ Smooth animations (Framer Motion)
-- ✅ Beautiful Shadcn UI components
-- ✅ Toast notifications
+- âœ… Modern, minimal design (Discord/Telegram-inspired)
+- âœ… Dark/Light theme toggle
+- âœ… Responsive design (mobile-friendly)
+- âœ… Smooth animations (Framer Motion)
+- âœ… Beautiful Shadcn UI components
+- âœ… Toast notifications
 
-## 🛠️ Tech Stack
+## ðŸ› ï¸ Tech Stack
 
 ### Frontend
 - **React** - UI library
@@ -55,87 +55,87 @@ A modern, full-stack real-time chat application built with the MERN stack (Mongo
 - **Cloudinary** - Image storage
 - **Multer** - File upload
 
-## 📁 Project Structure
+## ðŸ“ Project Structure
 
 ```
 chat-app-realtime/
-├── backend/
-│   ├── config/
-│   │   ├── db.js
-│   │   └── cloudinary.js
-│   ├── controllers/
-│   │   ├── authController.js
-│   │   ├── chatController.js
-│   │   ├── messageController.js
-│   │   └── userController.js
-│   ├── middleware/
-│   │   ├── auth.js
-│   │   ├── error.js
-│   │   └── upload.js
-│   ├── models/
-│   │   ├── User.js
-│   │   ├── Chat.js
-│   │   └── Message.js
-│   ├── routes/
-│   │   ├── authRoutes.js
-│   │   ├── chatRoutes.js
-│   │   ├── messageRoutes.js
-│   │   └── userRoutes.js
-│   ├── socket/
-│   │   └── socket.js
-│   ├── .env.example
-│   ├── .gitignore
-│   ├── package.json
-│   └── server.js
-├── frontend/
-│   ├── src/
-│   │   ├── components/
-│   │   │   ├── ui/
-│   │   │   │   ├── Avatar.jsx
-│   │   │   │   ├── Button.jsx
-│   │   │   │   ├── Input.jsx
-│   │   │   │   └── ScrollArea.jsx
-│   │   │   ├── ChatListItem.jsx
-│   │   │   ├── ChatWindow.jsx
-│   │   │   ├── CreateGroupModal.jsx
-│   │   │   ├── Loading.jsx
-│   │   │   ├── MessageInput.jsx
-│   │   │   ├── MessageItem.jsx
-│   │   │   ├── MessageList.jsx
-│   │   │   ├── NewChatModal.jsx
-│   │   │   ├── Sidebar.jsx
-│   │   │   ├── TypingIndicator.jsx
-│   │   │   └── UserProfileModal.jsx
-│   │   ├── hooks/
-│   │   │   └── useSocketListeners.js
-│   │   ├── lib/
-│   │   │   └── utils.js
-│   │   ├── pages/
-│   │   │   ├── Chat.jsx
-│   │   │   ├── Login.jsx
-│   │   │   └── Signup.jsx
-│   │   ├── services/
-│   │   │   ├── api.js
-│   │   │   └── socket.js
-│   │   ├── store/
-│   │   │   ├── authStore.js
-│   │   │   ├── chatStore.js
-│   │   │   ├── messageStore.js
-│   │   │   ├── themeStore.js
-│   │   │   └── userStore.js
-│   │   ├── App.jsx
-│   │   ├── index.css
-│   │   └── main.jsx
-│   ├── .gitignore
-│   ├── index.html
-│   ├── package.json
-│   ├── postcss.config.js
-│   ├── tailwind.config.js
-│   └── vite.config.js
-└── README.md
+â”œâ”€â”€ backend/
+â”‚   â”œâ”€â”€ config/
+â”‚   â”‚   â”œâ”€â”€ db.js
+â”‚   â”‚   â””â”€â”€ cloudinary.js
+â”‚   â”œâ”€â”€ controllers/
+â”‚   â”‚   â”œâ”€â”€ authController.js
+â”‚   â”‚   â”œâ”€â”€ chatController.js
+â”‚   â”‚   â”œâ”€â”€ messageController.js
+â”‚   â”‚   â””â”€â”€ userController.js
+â”‚   â”œâ”€â”€ middleware/
+â”‚   â”‚   â”œâ”€â”€ auth.js
+â”‚   â”‚   â”œâ”€â”€ error.js
+â”‚   â”‚   â””â”€â”€ upload.js
+â”‚   â”œâ”€â”€ models/
+â”‚   â”‚   â”œâ”€â”€ User.js
+â”‚   â”‚   â”œâ”€â”€ Chat.js
+â”‚   â”‚   â””â”€â”€ Message.js
+â”‚   â”œâ”€â”€ routes/
+â”‚   â”‚   â”œâ”€â”€ authRoutes.js
+â”‚   â”‚   â”œâ”€â”€ chatRoutes.js
+â”‚   â”‚   â”œâ”€â”€ messageRoutes.js
+â”‚   â”‚   â””â”€â”€ userRoutes.js
+â”‚   â”œâ”€â”€ socket/
+â”‚   â”‚   â””â”€â”€ socket.js
+â”‚   â”œâ”€â”€ .env.example
+â”‚   â”œâ”€â”€ .gitignore
+â”‚   â”œâ”€â”€ package.json
+â”‚   â””â”€â”€ server.js
+â”œâ”€â”€ frontend/
+â”‚   â”œâ”€â”€ src/
+â”‚   â”‚   â”œâ”€â”€ components/
+â”‚   â”‚   â”‚   â”œâ”€â”€ ui/
+â”‚   â”‚   â”‚   â”‚   â”œâ”€â”€ Avatar.jsx
+â”‚   â”‚   â”‚   â”‚   â”œâ”€â”€ Button.jsx
+â”‚   â”‚   â”‚   â”‚   â”œâ”€â”€ Input.jsx
+â”‚   â”‚   â”‚   â”‚   â””â”€â”€ ScrollArea.jsx
+â”‚   â”‚   â”‚   â”œâ”€â”€ ChatListItem.jsx
+â”‚   â”‚   â”‚   â”œâ”€â”€ ChatWindow.jsx
+â”‚   â”‚   â”‚   â”œâ”€â”€ CreateGroupModal.jsx
+â”‚   â”‚   â”‚   â”œâ”€â”€ Loading.jsx
+â”‚   â”‚   â”‚   â”œâ”€â”€ MessageInput.jsx
+â”‚   â”‚   â”‚   â”œâ”€â”€ MessageItem.jsx
+â”‚   â”‚   â”‚   â”œâ”€â”€ MessageList.jsx
+â”‚   â”‚   â”‚   â”œâ”€â”€ NewChatModal.jsx
+â”‚   â”‚   â”‚   â”œâ”€â”€ Sidebar.jsx
+â”‚   â”‚   â”‚   â”œâ”€â”€ TypingIndicator.jsx
+â”‚   â”‚   â”‚   â””â”€â”€ UserProfileModal.jsx
+â”‚   â”‚   â”œâ”€â”€ hooks/
+â”‚   â”‚   â”‚   â””â”€â”€ useSocketListeners.js
+â”‚   â”‚   â”œâ”€â”€ lib/
+â”‚   â”‚   â”‚   â””â”€â”€ utils.js
+â”‚   â”‚   â”œâ”€â”€ pages/
+â”‚   â”‚   â”‚   â”œâ”€â”€ Chat.jsx
+â”‚   â”‚   â”‚   â”œâ”€â”€ Login.jsx
+â”‚   â”‚   â”‚   â””â”€â”€ Signup.jsx
+â”‚   â”‚   â”œâ”€â”€ services/
+â”‚   â”‚   â”‚   â”œâ”€â”€ api.js
+â”‚   â”‚   â”‚   â””â”€â”€ socket.js
+â”‚   â”‚   â”œâ”€â”€ store/
+â”‚   â”‚   â”‚   â”œâ”€â”€ authStore.js
+â”‚   â”‚   â”‚   â”œâ”€â”€ chatStore.js
+â”‚   â”‚   â”‚   â”œâ”€â”€ messageStore.js
+â”‚   â”‚   â”‚   â”œâ”€â”€ themeStore.js
+â”‚   â”‚   â”‚   â””â”€â”€ userStore.js
+â”‚   â”‚   â”œâ”€â”€ App.jsx
+â”‚   â”‚   â”œâ”€â”€ index.css
+â”‚   â”‚   â””â”€â”€ main.jsx
+â”‚   â”œâ”€â”€ .gitignore
+â”‚   â”œâ”€â”€ index.html
+â”‚   â”œâ”€â”€ package.json
+â”‚   â”œâ”€â”€ postcss.config.js
+â”‚   â”œâ”€â”€ tailwind.config.js
+â”‚   â””â”€â”€ vite.config.js
+â””â”€â”€ README.md
 ```
 
-## 🚀 Getting Started
+## ðŸš€ Getting Started
 
 ### Prerequisites
 - Node.js (v16 or higher)
@@ -205,7 +205,7 @@ npm run dev
 - Frontend: http://localhost:5173
 - Backend API: http://localhost:5000
 
-## 🔑 Environment Variables
+## ðŸ”‘ Environment Variables
 
 ### Backend (.env)
 ```env
@@ -228,7 +228,7 @@ VITE_API_URL=http://localhost:5000
 VITE_SOCKET_URL=http://localhost:5000
 ```
 
-## 📡 API Endpoints
+## ðŸ“¡ API Endpoints
 
 ### Authentication
 - `POST /api/auth/signup` - Register a new user
@@ -259,9 +259,9 @@ VITE_SOCKET_URL=http://localhost:5000
 - `GET /api/messages/search/:chatId?query=` - Search messages
 - `POST /api/messages/upload` - Upload image
 
-## 🔌 Socket.io Events
+## ðŸ”Œ Socket.io Events
 
-### Client → Server
+### Client â†’ Server
 - `join-chat` - Join a chat room
 - `leave-chat` - Leave a chat room
 - `new-message` - Send a new message
@@ -270,7 +270,7 @@ VITE_SOCKET_URL=http://localhost:5000
 - `update-status` - Update user status
 - `message-seen` - Mark message as seen
 
-### Server → Client
+### Server â†’ Client
 - `message-received` - Receive a new message
 - `typing` - User is typing
 - `stop-typing` - User stopped typing
@@ -283,7 +283,7 @@ VITE_SOCKET_URL=http://localhost:5000
 - `removed-from-group` - Removed from a group
 - `group-renamed` - Group was renamed
 
-## 🎨 UI Components
+## ðŸŽ¨ UI Components
 
 ### Shadcn-style Components
 - `Button` - Customizable button with variants
@@ -303,7 +303,7 @@ VITE_SOCKET_URL=http://localhost:5000
 - `CreateGroupModal` - Create group chat
 - `UserProfileModal` - User profile editor
 
-## 🔒 Security Features
+## ðŸ”’ Security Features
 - JWT-based authentication
 - Password hashing with bcrypt (10 rounds)
 - Protected API routes
@@ -313,19 +313,19 @@ VITE_SOCKET_URL=http://localhost:5000
 - File upload validation
 - XSS protection
 
-## 📱 Responsive Design
+## ðŸ“± Responsive Design
 - Mobile-first approach
 - Breakpoint: `md:` for tablet and desktop
 - Touch-friendly UI elements
 - Optimized for all screen sizes
 
-## 🌙 Theme Support
+## ðŸŒ™ Theme Support
 - Light theme (default)
 - Dark theme
 - Persistent theme selection
 - Tailwind class-based theming
 
-## 🚀 Production Deployment
+## ðŸš€ Production Deployment
 
 ### Backend
 1. Set `NODE_ENV=production` in .env
@@ -339,7 +339,7 @@ VITE_SOCKET_URL=http://localhost:5000
 2. Deploy to Vercel, Netlify, or similar
 3. Update API URLs in environment variables
 
-## 🤝 Contributing
+## ðŸ¤ Contributing
 
 Feel free to contribute to this project by:
 1. Forking the repository
@@ -347,13 +347,14 @@ Feel free to contribute to this project by:
 3. Committing your changes
 4. Opening a pull request
 
-## 📄 License
+## ðŸ“„ License
 
 This project is open source and available under the MIT License.
 
-## 👨‍💻 Author
+## ðŸ‘¨â€ðŸ’» Author
 Dinesh Nikum
 
-#   R e a l T i m e - C h a t A p p  
- #   R e a l T i m e - C h a t A p p  
- 
+---
+
+Made with ❤️ using MERN Stack + Socket.io
+
