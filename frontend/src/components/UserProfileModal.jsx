@@ -93,12 +93,12 @@ const UserProfileModal = ({ onClose }) => {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         exit={{ opacity: 0, scale: 0.95 }}
-        className="w-full max-w-md rounded-lg bg-card p-6 shadow-xl"
+        className="w-full max-w-md rounded-lg bg-card p-4 sm:p-6 shadow-xl max-h-[90vh] overflow-y-auto"
       >
         {/* Header */}
         <div className="mb-6 flex items-center justify-between">

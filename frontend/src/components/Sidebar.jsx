@@ -43,11 +43,11 @@ const Sidebar = () => {
 
   return (
     <>
-      <div className="flex h-screen w-full md:w-96 flex-col border-r border-border bg-card">
+      <div className="flex h-screen w-full md:w-80 lg:w-96 flex-col border-r border-border bg-card">
         {/* Header */}
-        <div className="border-b border-border p-4">
-          <div className="flex items-center justify-between mb-4">
-            <h1 className="text-2xl font-bold text-foreground">Chats</h1>
+        <div className="border-b border-border p-3 sm:p-4">
+          <div className="flex items-center justify-between mb-3 sm:mb-4">
+            <h1 className="text-xl sm:text-2xl font-bold text-foreground">Chats</h1>
             <div className="flex items-center gap-2">
               {/* Theme Toggle */}
               <Button
@@ -125,20 +125,20 @@ const Sidebar = () => {
             <Button
               variant="outline"
               size="sm"
-              className="flex-1"
+              className="flex-1 text-xs sm:text-sm"
               onClick={() => setShowNewChatModal(true)}
             >
-              <Plus className="h-4 w-4 mr-2" />
-              New Chat
+              <Plus className="h-4 w-4 mr-1 sm:mr-2" />
+              <span className="hidden xs:inline">New</span> Chat
             </Button>
             <Button
               variant="outline"
               size="sm"
-              className="flex-1"
+              className="flex-1 text-xs sm:text-sm"
               onClick={() => setShowCreateGroupModal(true)}
             >
-              <Users className="h-4 w-4 mr-2" />
-              New Group
+              <Users className="h-4 w-4 mr-1 sm:mr-2" />
+              <span className="hidden xs:inline">New</span> Group
             </Button>
           </div>
         </div>

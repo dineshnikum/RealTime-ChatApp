@@ -27,12 +27,12 @@ const NewChatModal = ({ onClose }) => {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         exit={{ opacity: 0, scale: 0.95 }}
-        className="w-full max-w-md rounded-lg bg-card p-6 shadow-xl"
+        className="w-full max-w-md rounded-lg bg-card p-4 sm:p-6 shadow-xl max-h-[90vh] overflow-hidden flex flex-col"
       >
         {/* Header */}
         <div className="mb-4 flex items-center justify-between">
@@ -59,7 +59,7 @@ const NewChatModal = ({ onClose }) => {
         </div>
 
         {/* User List */}
-        <div className="max-h-96 overflow-y-auto">
+        <div className="flex-1 overflow-y-auto max-h-64 sm:max-h-96">
           {users.length === 0 ? (
             <div className="py-8 text-center text-muted-foreground">
               {searchQuery ? 'No users found' : 'Search for users to start a chat'}

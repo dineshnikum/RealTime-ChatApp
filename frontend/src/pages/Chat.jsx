@@ -5,7 +5,7 @@ import Sidebar from '../components/Sidebar';
 import ChatWindow from '../components/ChatWindow';
 
 const Chat = () => {
-  const { fetchChats } = useChatStore();
+  const { fetchChats, selectedChat } = useChatStore();
 
   // Initialize socket listeners
   useSocketListeners();
@@ -17,8 +17,14 @@ const Chat = () => {
 
   return (
     <div className="flex h-screen overflow-hidden">
-      <Sidebar />
-      <ChatWindow />
+      {/* Sidebar - hidden on mobile when a chat is selected */}
+      <div className={`${selectedChat ? 'hidden md:block' : 'block'} w-full md:w-auto`}>
+        <Sidebar />
+      </div>
+      {/* ChatWindow - hidden on mobile when no chat is selected */}
+      <div className={`${selectedChat ? 'block' : 'hidden md:block'} flex-1`}>
+        <ChatWindow />
+      </div>
     </div>
   );
 };

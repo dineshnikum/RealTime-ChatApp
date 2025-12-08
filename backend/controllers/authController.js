@@ -1,7 +1,7 @@
-import User from '../models/User.js';
-import { generateToken, generateRefreshToken } from '../middleware/auth.js';
-import jwt from 'jsonwebtoken';
-import cloudinary from '../config/cloudinary.js';
+import User from "../models/User.js";
+import { generateToken, generateRefreshToken } from "../middleware/auth.js";
+import jwt from "jsonwebtoken";
+import cloudinary from "../config/cloudinary.js";
 
 /**
  * @desc    Register a new user
@@ -14,13 +14,13 @@ export const signup = async (req, res) => {
 
     // Validate input
     if (!name || !email || !password) {
-      return res.status(400).json({ message: 'Please provide all fields' });
+      return res.status(400).json({ message: "Please provide all fields" });
     }
 
     // Check if user already exists
     const userExists = await User.findOne({ email });
     if (userExists) {
-      return res.status(400).json({ message: 'User already exists' });
+      return res.status(400).json({ message: "User already exists" });
     }
 
     // Create user
@@ -42,8 +42,8 @@ export const signup = async (req, res) => {
       });
     }
   } catch (error) {
-    console.error('Signup error:', error);
-    res.status(500).json({ message: 'Server error during signup' });
+    console.error("Signup error:", error);
+    res.status(500).json({ message: "Server error during signup" });
   }
 };
 
@@ -58,15 +58,15 @@ export const login = async (req, res) => {
 
     // Validate input
     if (!email || !password) {
-      return res.status(400).json({ message: 'Please provide all fields' });
+      return res.status(400).json({ message: "Please provide all fields" });
     }
 
     // Find user and include password for verification
-    const user = await User.findOne({ email }).select('+password');
+    const user = await User.findOne({ email }).select("+password");
 
     if (user && (await user.matchPassword(password))) {
       // Update user status to online
-      user.status = 'online';
+      user.status = "online";
       await user.save();
 
       res.json({
@@ -80,11 +80,11 @@ export const login = async (req, res) => {
         refreshToken: generateRefreshToken(user._id),
       });
     } else {
-      res.status(401).json({ message: 'Invalid email or password' });
+      res.status(401).json({ message: "Invalid email or password" });
     }
   } catch (error) {
-    console.error('Login error:', error);
-    res.status(500).json({ message: 'Server error during login' });
+    console.error("Login error:", error);
+    res.status(500).json({ message: "Server error during login" });
   }
 };
 
@@ -98,7 +98,7 @@ export const refreshToken = async (req, res) => {
     const { refreshToken } = req.body;
 
     if (!refreshToken) {
-      return res.status(401).json({ message: 'Refresh token required' });
+      return res.status(401).json({ message: "Refresh token required" });
     }
 
     // Verify refresh token
@@ -111,8 +111,8 @@ export const refreshToken = async (req, res) => {
       token: newToken,
     });
   } catch (error) {
-    console.error('Refresh token error:', error);
-    res.status(401).json({ message: 'Invalid refresh token' });
+    console.error("Refresh token error:", error);
+    res.status(401).json({ message: "Invalid refresh token" });
   }
 };
 
@@ -126,15 +126,15 @@ export const logout = async (req, res) => {
     // Update user status to offline
     const user = await User.findById(req.user._id);
     if (user) {
-      user.status = 'offline';
+      user.status = "offline";
       user.lastSeen = Date.now();
       await user.save();
     }
 
-    res.json({ message: 'Logged out successfully' });
+    res.json({ message: "Logged out successfully" });
   } catch (error) {
-    console.error('Logout error:', error);
-    res.status(500).json({ message: 'Server error during logout' });
+    console.error("Logout error:", error);
+    res.status(500).json({ message: "Server error during logout" });
   }
 };
 
@@ -148,8 +148,8 @@ export const getMe = async (req, res) => {
     const user = await User.findById(req.user._id);
     res.json(user);
   } catch (error) {
-    console.error('Get me error:', error);
-    res.status(500).json({ message: 'Server error' });
+    console.error("Get me error:", error);
+    res.status(500).json({ message: "Server error" });
   }
 };
 
@@ -163,16 +163,20 @@ export const updateProfile = async (req, res) => {
     const user = await User.findById(req.user._id);
 
     if (!user) {
-      return res.status(404).json({ message: 'User not found' });
+      return res.status(404).json({ message: "User not found" });
     }
 
     let uploadedAvatarUrl = null;
 
     if (req.file) {
       // Check if Cloudinary is configured
-      if (!process.env.CLOUDINARY_CLOUD_NAME || !process.env.CLOUDINARY_API_KEY || !process.env.CLOUDINARY_API_SECRET) {
-        return res.status(500).json({ 
-          message: 'Image upload is not configured. Please contact support.' 
+      if (
+        !process.env.CLOUDINARY_CLOUD_NAME ||
+        !process.env.CLOUDINARY_API_KEY ||
+        !process.env.CLOUDINARY_API_SECRET
+      ) {
+        return res.status(500).json({
+          message: "Image upload is not configured. Please contact support.",
         });
       }
 
@@ -180,10 +184,10 @@ export const updateProfile = async (req, res) => {
         uploadedAvatarUrl = await new Promise((resolve, reject) => {
           const uploadStream = cloudinary.uploader.upload_stream(
             {
-              folder: 'chat-app/avatars',
-              resource_type: 'image',
+              folder: "chat-app/avatars",
+              resource_type: "image",
               transformation: [
-                { width: 512, height: 512, crop: 'fill', gravity: 'face' },
+                { width: 512, height: 512, crop: "fill", gravity: "face" },
               ],
             },
             (error, result) => {
@@ -198,9 +202,10 @@ export const updateProfile = async (req, res) => {
           uploadStream.end(req.file.buffer);
         });
       } catch (uploadError) {
-        console.error('Cloudinary upload error:', uploadError);
-        return res.status(500).json({ 
-          message: 'Failed to upload image. Please try again or use a smaller image.' 
+        console.error("Cloudinary upload error:", uploadError);
+        return res.status(500).json({
+          message:
+            "Failed to upload image. Please try again or use a smaller image.",
         });
       }
     }
@@ -224,8 +229,7 @@ export const updateProfile = async (req, res) => {
       bio: updatedUser.bio,
     });
   } catch (error) {
-    console.error('Update profile error:', error);
-    res.status(500).json({ message: 'Server error updating profile' });
+    console.error("Update profile error:", error);
+    res.status(500).json({ message: "Server error updating profile" });
   }
 };
-

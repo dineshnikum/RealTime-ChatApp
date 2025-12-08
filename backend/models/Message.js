@@ -1,48 +1,48 @@
 import mongoose from 'mongoose';
 
 const messageSchema = new mongoose.Schema(
-  {
-    sender: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'User',
-      required: true,
-    },
-    content: {
-      type: String,
-      trim: true,
-    },
-    chat: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Chat',
-      required: true,
-    },
-    imageUrl: {
-      type: String,
-      default: '',
-    },
-    // Track who has seen this message
-    seenBy: [
-      {
-        user: {
-          type: mongoose.Schema.Types.ObjectId,
-          ref: 'User',
+    {
+        sender: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'User',
+            required: true,
         },
-        seenAt: {
-          type: Date,
-          default: Date.now,
+        content: {
+            type: String,
+            trim: true,
         },
-      },
-    ],
-    // Message type: text, image, file, system
-    messageType: {
-      type: String,
-      enum: ['text', 'image', 'system'],
-      default: 'text',
+        chat: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Chat',
+            required: true,
+        },
+        imageUrl: {
+            type: String,
+            default: '',
+        },
+        // Track who has seen this message
+        seenBy: [
+            {
+                user: {
+                    type: mongoose.Schema.Types.ObjectId,
+                    ref: 'User',
+                },
+                seenAt: {
+                    type: Date,
+                    default: Date.now,
+                },
+            },
+        ],
+        // Message type: text, image, file, system
+        messageType: {
+            type: String,
+            enum: ['text', 'image', 'system'],
+            default: 'text',
+        },
     },
-  },
-  {
-    timestamps: true,
-  }
+    {
+        timestamps: true,
+    }
 );
 
 // Index for faster queries
@@ -52,4 +52,3 @@ messageSchema.index({ content: 'text' }); // Text search index
 const Message = mongoose.model('Message', messageSchema);
 
 export default Message;
-

@@ -196,8 +196,8 @@ const MessageInput = () => {
   const chatLabel = selectedChat ? getChatName(selectedChat, user?._id) : null;
 
   return (
-    <div className="border-t border-border/60 bg-card/90 px-4 py-3 backdrop-blur">
-      <form onSubmit={handleSubmit} className="flex flex-col gap-3">
+    <div className="border-t border-border/60 bg-card/90 px-2 sm:px-4 py-2 sm:py-3 backdrop-blur">
+      <form onSubmit={handleSubmit} className="flex flex-col gap-2 sm:gap-3">
         {/* Hidden Image Upload */}
         <input
           ref={fileInputRef}
@@ -207,9 +207,9 @@ const MessageInput = () => {
           onChange={handleImageUpload}
         />
 
-        <div className="flex items-end gap-3">
+        <div className="flex items-end gap-2 sm:gap-3">
           {/* Message Input */}
-          <div className="flex flex-1 items-end gap-2 rounded-2xl border border-input/60 bg-background/90 px-2 py-1 shadow-sm transition focus-within:border-primary focus-within:ring-1 focus-within:ring-primary/30">
+          <div className="flex flex-1 items-end gap-1 sm:gap-2 rounded-2xl border border-input/60 bg-background/90 px-1 sm:px-2 py-1 shadow-sm transition focus-within:border-primary focus-within:ring-1 focus-within:ring-primary/30">
             <Button
               type="button"
               variant="ghost"
@@ -262,7 +262,7 @@ const MessageInput = () => {
               {showEmojiPalette && (
                 <div
                   ref={emojiPanelRef}
-                  className="absolute bottom-12 right-0 z-10 w-48 rounded-2xl border border-border/70 bg-popover p-3 shadow-xl"
+                  className="absolute bottom-12 right-0 z-10 w-44 sm:w-48 rounded-2xl border border-border/70 bg-popover p-2 sm:p-3 shadow-xl"
                 >
                   <p className="mb-2 text-xs font-medium uppercase tracking-wide text-muted-foreground">
                     Quick emoji
@@ -273,7 +273,7 @@ const MessageInput = () => {
                         key={emoji}
                         type="button"
                         onClick={() => handleEmojiSelect(emoji)}
-                        className="rounded-lg bg-muted/60 p-1 text-base transition hover:bg-primary/10"
+                        className="rounded-lg bg-muted/60 p-1 text-base transition hover:bg-primary/10 active:bg-primary/20"
                       >
                         {emoji}
                       </button>
@@ -289,14 +289,15 @@ const MessageInput = () => {
             type="submit"
             size="icon"
             disabled={isSendDisabled}
-            className="h-12 w-12 shrink-0 rounded-2xl shadow-lg transition hover:shadow-primary/40 disabled:shadow-none"
+            className="h-10 w-10 sm:h-12 sm:w-12 shrink-0 rounded-xl sm:rounded-2xl shadow-lg transition hover:shadow-primary/40 disabled:shadow-none"
           >
-            <Send className="h-5 w-5" />
+            <Send className="h-4 w-4 sm:h-5 sm:w-5" />
           </Button>
         </div>
 
         <div className="flex items-center justify-between text-xs text-muted-foreground">
-          <span>Press Enter to send • Shift+Enter for newline</span>
+          <span className="hidden sm:inline">Press Enter to send • Shift+Enter for newline</span>
+          <span className="sm:hidden">Enter to send</span>
           <span>
             {message.length}/{MAX_MESSAGE_CHARACTERS}
           </span>

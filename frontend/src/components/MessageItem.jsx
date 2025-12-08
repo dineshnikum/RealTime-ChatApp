@@ -29,7 +29,7 @@ const MessageItem = ({ message, isFirst }) => {
 
       {/* Message Content */}
       <div
-        className={`flex max-w-[70%] flex-col ${
+        className={`flex max-w-[85%] sm:max-w-[70%] flex-col ${
           isOwn ? "items-end" : "items-start"
         }`}
       >
@@ -42,7 +42,7 @@ const MessageItem = ({ message, isFirst }) => {
 
         {/* Message Bubble */}
         <div
-          className={`rounded-2xl px-4 py-2 ${
+          className={`rounded-2xl px-3 py-2 sm:px-4 ${
             isOwn
               ? "bg-primary text-primary-foreground rounded-br-sm"
               : "bg-secondary text-secondary-foreground rounded-bl-sm"
@@ -53,13 +53,13 @@ const MessageItem = ({ message, isFirst }) => {
             <img
               src={message.imageUrl}
               alt="Attachment"
-              className="mb-2 max-w-xs rounded-lg"
+              className="mb-2 max-w-[200px] sm:max-w-xs rounded-lg"
             />
           )}
 
           {/* Text Content */}
           {message.content && (
-            <p className="whitespace-pre-wrap break-words">{message.content}</p>
+            <p className="whitespace-pre-wrap break-words text-sm sm:text-base">{message.content}</p>
           )}
 
           {/* Time and Status */}

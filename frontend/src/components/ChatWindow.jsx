@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import { Info, Phone, Video } from "lucide-react";
+import { Info, Phone, Video, ArrowLeft } from "lucide-react";
 import { useChatStore } from "../store/chatStore";
 import { useMessageStore } from "../store/messageStore";
 import { useAuthStore } from "../store/authStore";
@@ -13,10 +13,15 @@ import MessageInput from "./MessageInput";
 import { getChatName, getChatAvatar, getOtherUser } from "../lib/utils";
 
 const ChatWindow = () => {
-  const { selectedChat } = useChatStore();
+  const { selectedChat, selectChat } = useChatStore();
   const { messages, fetchMessages, clearMessages } = useMessageStore();
   const { user } = useAuthStore();
   const { isUserOnline } = useUserStore();
+
+  // Handle back button for mobile navigation
+  const handleBackToChats = () => {
+    selectChat(null);
+  };
 
   useEffect(() => {
     if (selectedChat) {
@@ -28,15 +33,15 @@ const ChatWindow = () => {
 
   if (!selectedChat) {
     return (
-      <div className="flex h-screen flex-1 items-center justify-center bg-background">
-        <div className="text-center">
+      <div className="hidden md:flex h-screen flex-1 items-center justify-center bg-background">
+        <div className="text-center px-4">
           <motion.div
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
-            className="mx-auto mb-4 flex h-20 w-20 items-center justify-center rounded-full bg-primary/10"
+            className="mx-auto mb-4 flex h-16 w-16 sm:h-20 sm:w-20 items-center justify-center rounded-full bg-primary/10"
           >
             <svg
-              className="h-10 w-10 text-primary"
+              className="h-8 w-8 sm:h-10 sm:w-10 text-primary"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -49,10 +54,10 @@ const ChatWindow = () => {
               />
             </svg>
           </motion.div>
-          <h2 className="text-2xl font-semibold text-foreground">
+          <h2 className="text-xl sm:text-2xl font-semibold text-foreground">
             Select a chat to start messaging
           </h2>
-          <p className="mt-2 text-muted-foreground">
+          <p className="mt-2 text-sm sm:text-base text-muted-foreground">
             Choose a conversation from the sidebar
           </p>
         </div>
@@ -68,22 +73,32 @@ const ChatWindow = () => {
   return (
     <div className="flex h-screen flex-1 flex-col bg-background">
       {/* Chat Header */}
-      <div className="flex items-center justify-between border-b border-border bg-card p-4">
-        <div className="flex items-center gap-3">
-          <div className="relative">
-            <Avatar className="h-10 w-10">
+      <div className="flex items-center justify-between border-b border-border bg-card p-3 md:p-4">
+        <div className="flex items-center gap-2 md:gap-3 min-w-0 flex-1">
+          {/* Back Button - visible only on mobile */}
+          <Button
+            variant="ghost"
+            size="icon"
+            className="md:hidden shrink-0"
+            onClick={handleBackToChats}
+          >
+            <ArrowLeft className="h-5 w-5" />
+          </Button>
+          
+          <div className="relative shrink-0">
+            <Avatar className="h-9 w-9 md:h-10 md:w-10">
               <AvatarImage src={chatAvatar} alt={chatName} />
               <AvatarFallback>
                 {chatName?.charAt(0).toUpperCase()}
               </AvatarFallback>
             </Avatar>
             {!selectedChat.isGroupChat && isOnline && (
-              <div className="absolute bottom-0 right-0 h-3 w-3 rounded-full bg-green-500 ring-2 ring-card" />
+              <div className="absolute bottom-0 right-0 h-2.5 w-2.5 md:h-3 md:w-3 rounded-full bg-green-500 ring-2 ring-card" />
             )}
           </div>
-          <div>
-            <h2 className="font-semibold text-foreground">{chatName}</h2>
-            <p className="text-xs text-muted-foreground">
+          <div className="min-w-0 flex-1">
+            <h2 className="font-semibold text-foreground truncate text-sm md:text-base">{chatName}</h2>
+            <p className="text-xs text-muted-foreground truncate">
               {selectedChat.isGroupChat
                 ? `${selectedChat.users?.length} members`
                 : isOnline
@@ -96,15 +111,15 @@ const ChatWindow = () => {
         </div>
 
         {/* Action Buttons */}
-        <div className="flex items-center gap-2">
-          <Button variant="ghost" size="icon">
-            <Phone className="h-5 w-5" />
+        <div className="flex items-center gap-1 md:gap-2 shrink-0">
+          <Button variant="ghost" size="icon" className="h-8 w-8 md:h-10 md:w-10">
+            <Phone className="h-4 w-4 md:h-5 md:w-5" />
           </Button>
-          <Button variant="ghost" size="icon">
-            <Video className="h-5 w-5" />
+          <Button variant="ghost" size="icon" className="hidden sm:flex h-8 w-8 md:h-10 md:w-10">
+            <Video className="h-4 w-4 md:h-5 md:w-5" />
           </Button>
-          <Button variant="ghost" size="icon">
-            <Info className="h-5 w-5" />
+          <Button variant="ghost" size="icon" className="h-8 w-8 md:h-10 md:w-10">
+            <Info className="h-4 w-4 md:h-5 md:w-5" />
           </Button>
         </div>
       </div>

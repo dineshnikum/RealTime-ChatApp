@@ -21,7 +21,7 @@ const MessageList = ({ messages }) => {
   const isTyping = selectedChat && typingUsers[selectedChat._id];
 
   return (
-    <ScrollArea ref={scrollRef} className="flex-1 p-4">
+    <ScrollArea ref={scrollRef} className="flex-1 p-2 sm:p-4">
       <AnimatePresence initial={false}>
         {messages.map((message, index) => (
           <MessageItem

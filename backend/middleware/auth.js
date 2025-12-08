@@ -8,10 +8,7 @@ export const protect = async (req, res, next) => {
     let token;
 
     // Check if token exists in Authorization header
-    if (
-        req.headers.authorization &&
-        req.headers.authorization.startsWith('Bearer')
-    ) {
+    if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
         try {
             // Extract token from header
             token = req.headers.authorization.split(' ')[1];
@@ -55,4 +52,3 @@ export const generateRefreshToken = (id) => {
         expiresIn: process.env.JWT_REFRESH_EXPIRE,
     });
 };
-
