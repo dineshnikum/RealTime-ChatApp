@@ -39,8 +39,17 @@ export const errorHandler = (err, req, res, next) => {
  * Handle 404 routes
  */
 export const notFound = (req, res, next) => {
-    const error = new Error(`Not Found - ${req.originalUrl}`);
-    res.status(404);
-    next(error);
+    // Only trigger 404 for API routes, ignore static assets
+    if (req.originalUrl.startsWith('/api')) {
+        const error = new Error(`Not Found - ${req.originalUrl}`);
+        res.status(404);
+        next(error);
+    } else {
+        // For non-API routes, just send a simple 404
+        res.status(404).json({
+            success: false,
+            message: 'Route not found'
+        });
+    }
 };
 
