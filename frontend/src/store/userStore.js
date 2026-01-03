@@ -65,5 +65,12 @@ export const useUserStore = create((set, get) => ({
   isUserOnline: (userId) => {
     return get().onlineUsers.has(userId);
   },
+
+  /**
+   * Clear users list
+   */
+  clearUsers: () => {
+    set({ users: [] });
+  },
 }));
 

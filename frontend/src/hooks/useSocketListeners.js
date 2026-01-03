@@ -46,13 +46,10 @@ export const useSocketListeners = () => {
       // Show notification if not in current chat
       if (!selectedChat || message.chat._id !== selectedChat._id) {
         if (message.sender._id !== user?._id) {
-          toast(
-            `${message.sender.name}: ${message.content || 'Sent an image'}`,
-            {
-              icon: '💬',
-              duration: 3000,
-            }
-          );
+          toast(`${message.sender.name}: ${message.content || 'Sent an image'}`, {
+            icon: '💬',
+            duration: 3000,
+          });
         }
       }
     };
@@ -179,4 +176,3 @@ export const useSocketListeners = () => {
     setUserOffline,
   ]);
 };
-

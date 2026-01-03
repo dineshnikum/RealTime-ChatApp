@@ -13,7 +13,7 @@ const ChatListItem = ({ chat }) => {
   const chatName = getChatName(chat, user?._id);
   const chatAvatar = getChatAvatar(chat, user?._id);
   const isSelected = selectedChat?._id === chat._id;
-  
+
   // Check if other user is online (for one-to-one chats)
   const otherUser = getOtherUser(chat, user?._id);
   const isOnline = otherUser && isUserOnline(otherUser._id);
@@ -45,7 +45,9 @@ const ChatListItem = ({ chat }) => {
       {/* Chat Info */}
       <div className="flex-1 overflow-hidden min-w-0">
         <div className="flex items-center justify-between gap-2">
-          <h3 className="font-semibold text-foreground truncate text-sm sm:text-base">{chatName}</h3>
+          <h3 className="font-semibold text-foreground truncate text-sm sm:text-base">
+            {chatName}
+          </h3>
           {chat.latestMessage && (
             <span className="text-xs text-muted-foreground shrink-0">
               {formatRelativeTime(chat.latestMessage.createdAt)}
@@ -61,4 +63,3 @@ const ChatListItem = ({ chat }) => {
 };
 
 export default ChatListItem;
-

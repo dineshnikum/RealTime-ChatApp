@@ -1,11 +1,11 @@
 import express from 'express';
 import {
-  accessChat,
-  fetchChats,
-  createGroupChat,
-  renameGroup,
-  addToGroup,
-  removeFromGroup,
+    accessChat,
+    fetchChats,
+    createGroupChat,
+    renameGroup,
+    addToGroup,
+    removeFromGroup,
 } from '../controllers/chatController.js';
 import { protect } from '../middleware/auth.js';
 
@@ -20,4 +20,3 @@ router.put('/group/add', protect, addToGroup);
 router.put('/group/remove', protect, removeFromGroup);
 
 export default router;
-

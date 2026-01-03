@@ -89,13 +89,8 @@ export const useChatStore = create((set, get) => ({
 
       // Update in chats list
       set({
-        chats: get().chats.map((chat) =>
-          chat._id === chatId ? updatedChat : chat
-        ),
-        selectedChat:
-          get().selectedChat?._id === chatId
-            ? updatedChat
-            : get().selectedChat,
+        chats: get().chats.map((chat) => (chat._id === chatId ? updatedChat : chat)),
+        selectedChat: get().selectedChat?._id === chatId ? updatedChat : get().selectedChat,
       });
 
       toast.success('Group renamed successfully!');
@@ -116,13 +111,8 @@ export const useChatStore = create((set, get) => ({
       const updatedChat = response.data;
 
       set({
-        chats: get().chats.map((chat) =>
-          chat._id === chatId ? updatedChat : chat
-        ),
-        selectedChat:
-          get().selectedChat?._id === chatId
-            ? updatedChat
-            : get().selectedChat,
+        chats: get().chats.map((chat) => (chat._id === chatId ? updatedChat : chat)),
+        selectedChat: get().selectedChat?._id === chatId ? updatedChat : get().selectedChat,
       });
 
       toast.success('User added to group!');
@@ -143,13 +133,8 @@ export const useChatStore = create((set, get) => ({
       const updatedChat = response.data;
 
       set({
-        chats: get().chats.map((chat) =>
-          chat._id === chatId ? updatedChat : chat
-        ),
-        selectedChat:
-          get().selectedChat?._id === chatId
-            ? updatedChat
-            : get().selectedChat,
+        chats: get().chats.map((chat) => (chat._id === chatId ? updatedChat : chat)),
+        selectedChat: get().selectedChat?._id === chatId ? updatedChat : get().selectedChat,
       });
 
       toast.success('User removed from group!');
@@ -166,9 +151,7 @@ export const useChatStore = create((set, get) => ({
    */
   updateChat: (chatId, updates) => {
     set({
-      chats: get().chats.map((chat) =>
-        chat._id === chatId ? { ...chat, ...updates } : chat
-      ),
+      chats: get().chats.map((chat) => (chat._id === chatId ? { ...chat, ...updates } : chat)),
     });
   },
 
@@ -183,5 +166,11 @@ export const useChatStore = create((set, get) => ({
       set({ chats: [chat, ...filteredChats] });
     }
   },
-}));
 
+  /**
+   * Reset chat store (clear all data)
+   */
+  resetChatStore: () => {
+    set({ chats: [], selectedChat: null, isLoading: false, error: null });
+  },
+}));

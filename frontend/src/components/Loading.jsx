@@ -3,11 +3,7 @@ import { motion } from 'framer-motion';
 const Loading = () => {
   return (
     <div className="flex h-screen items-center justify-center bg-background">
-      <motion.div
-        className="flex space-x-2"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-      >
+      <motion.div className="flex space-x-2" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
         {[0, 1, 2].map((index) => (
           <motion.div
             key={index}
@@ -28,4 +24,3 @@ const Loading = () => {
 };
 
 export default Loading;
-

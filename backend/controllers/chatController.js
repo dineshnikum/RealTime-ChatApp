@@ -44,10 +44,7 @@ export const accessChat = async (req, res) => {
     };
 
     const createdChat = await Chat.create(chatData);
-    const fullChat = await Chat.findById(createdChat._id).populate(
-      'users',
-      '-password'
-    );
+    const fullChat = await Chat.findById(createdChat._id).populate('users', '-password');
 
     res.status(201).json(fullChat);
   } catch (error) {
@@ -101,9 +98,7 @@ export const createGroupChat = async (req, res) => {
     const parsedUsers = typeof users === 'string' ? JSON.parse(users) : users;
 
     if (parsedUsers.length < 2) {
-      return res
-        .status(400)
-        .json({ message: 'Group chat requires at least 2 users' });
+      return res.status(400).json({ message: 'Group chat requires at least 2 users' });
     }
 
     // Add current user to the group
@@ -140,11 +135,7 @@ export const renameGroup = async (req, res) => {
       return res.status(400).json({ message: 'Please provide all fields' });
     }
 
-    const updatedChat = await Chat.findByIdAndUpdate(
-      chatId,
-      { chatName },
-      { new: true }
-    )
+    const updatedChat = await Chat.findByIdAndUpdate(chatId, { chatName }, { new: true })
       .populate('users', '-password')
       .populate('groupAdmin', '-password');
 
@@ -172,11 +163,7 @@ export const addToGroup = async (req, res) => {
       return res.status(400).json({ message: 'Please provide all fields' });
     }
 
-    const chat = await Chat.findByIdAndUpdate(
-      chatId,
-      { $push: { users: userId } },
-      { new: true }
-    )
+    const chat = await Chat.findByIdAndUpdate(chatId, { $push: { users: userId } }, { new: true })
       .populate('users', '-password')
       .populate('groupAdmin', '-password');
 
@@ -204,11 +191,7 @@ export const removeFromGroup = async (req, res) => {
       return res.status(400).json({ message: 'Please provide all fields' });
     }
 
-    const chat = await Chat.findByIdAndUpdate(
-      chatId,
-      { $pull: { users: userId } },
-      { new: true }
-    )
+    const chat = await Chat.findByIdAndUpdate(chatId, { $pull: { users: userId } }, { new: true })
       .populate('users', '-password')
       .populate('groupAdmin', '-password');
 
@@ -222,4 +205,3 @@ export const removeFromGroup = async (req, res) => {
     res.status(500).json({ message: 'Server error' });
   }
 };
-

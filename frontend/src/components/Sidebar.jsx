@@ -1,14 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import {
-  Search,
-  Plus,
-  LogOut,
-  Moon,
-  Sun,
-  Settings,
-  Users,
-} from 'lucide-react';
+import { Search, Plus, LogOut, Moon, Sun, Settings, Users } from 'lucide-react';
 import { useAuthStore } from '../store/authStore';
 import { useThemeStore } from '../store/themeStore';
 import { useChatStore } from '../store/chatStore';
@@ -30,6 +22,7 @@ const Sidebar = () => {
   const [showProfileModal, setShowProfileModal] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
 
+  // Filter chats by search query
   const filteredChats = chats.filter((chat) => {
     const chatName = chat.isGroupChat
       ? chat.chatName
@@ -37,6 +30,7 @@ const Sidebar = () => {
     return chatName.toLowerCase().includes(searchQuery.toLowerCase());
   });
 
+  // Handle logout
   const handleLogout = async () => {
     await logout();
   };
@@ -50,17 +44,8 @@ const Sidebar = () => {
             <h1 className="text-xl sm:text-2xl font-bold text-foreground">Chats</h1>
             <div className="flex items-center gap-2">
               {/* Theme Toggle */}
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={toggleTheme}
-                title="Toggle theme"
-              >
-                {theme === 'dark' ? (
-                  <Sun className="h-5 w-5" />
-                ) : (
-                  <Moon className="h-5 w-5" />
-                )}
+              <Button variant="ghost" size="icon" onClick={toggleTheme} title="Toggle theme">
+                {theme === 'dark' ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
               </Button>
 
               {/* User Menu */}
@@ -71,9 +56,7 @@ const Sidebar = () => {
                 >
                   <Avatar className="h-9 w-9 cursor-pointer hover:opacity-80 transition">
                     <AvatarImage src={user?.avatar} alt={user?.name} />
-                    <AvatarFallback>
-                      {user?.name?.charAt(0).toUpperCase()}
-                    </AvatarFallback>
+                    <AvatarFallback>{user?.name?.charAt(0).toUpperCase()}</AvatarFallback>
                   </Avatar>
                 </button>
 
@@ -152,27 +135,18 @@ const Sidebar = () => {
                 <p className="text-sm mt-2">Start a new chat to begin messaging</p>
               </div>
             ) : (
-              filteredChats.map((chat) => (
-                <ChatListItem key={chat._id} chat={chat} />
-              ))
+              filteredChats.map((chat) => <ChatListItem key={chat._id} chat={chat} />)
             )}
           </div>
         </ScrollArea>
       </div>
 
       {/* Modals */}
-      {showNewChatModal && (
-        <NewChatModal onClose={() => setShowNewChatModal(false)} />
-      )}
-      {showCreateGroupModal && (
-        <CreateGroupModal onClose={() => setShowCreateGroupModal(false)} />
-      )}
-      {showProfileModal && (
-        <UserProfileModal onClose={() => setShowProfileModal(false)} />
-      )}
+      {showNewChatModal && <NewChatModal onClose={() => setShowNewChatModal(false)} />}
+      {showCreateGroupModal && <CreateGroupModal onClose={() => setShowCreateGroupModal(false)} />}
+      {showProfileModal && <UserProfileModal onClose={() => setShowProfileModal(false)} />}
     </>
   );
 };
 
 export default Sidebar;
-

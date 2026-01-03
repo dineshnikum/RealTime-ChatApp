@@ -16,7 +16,7 @@ const Chat = () => {
   }, [fetchChats]);
 
   return (
-    <div className="flex h-screen overflow-hidden">
+    <div className="flex h-screen overflow-hidden px-12 bg-gray-900">
       {/* Sidebar - hidden on mobile when a chat is selected */}
       <div className={`${selectedChat ? 'hidden md:block' : 'block'} w-full md:w-auto`}>
         <Sidebar />
@@ -30,4 +30,3 @@ const Chat = () => {
 };
 
 export default Chat;
-

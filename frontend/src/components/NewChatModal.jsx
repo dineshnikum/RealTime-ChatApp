@@ -9,8 +9,13 @@ import Input from './ui/Input';
 
 const NewChatModal = ({ onClose }) => {
   const [searchQuery, setSearchQuery] = useState('');
-  const { searchUsers, users } = useUserStore();
+  const { searchUsers, users, clearUsers } = useUserStore();
   const { accessChat } = useChatStore();
+
+  // Clear users when modal opens
+  useEffect(() => {
+    clearUsers();
+  }, [clearUsers]);
 
   useEffect(() => {
     if (searchQuery) {
@@ -18,8 +23,11 @@ const NewChatModal = ({ onClose }) => {
         searchUsers(searchQuery);
       }, 300);
       return () => clearTimeout(timeoutId);
+    } else {
+      // Clear users when search query is empty
+      clearUsers();
     }
-  }, [searchQuery, searchUsers]);
+  }, [searchQuery, searchUsers, clearUsers]);
 
   const handleSelectUser = async (userId) => {
     await accessChat(userId);
