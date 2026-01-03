@@ -1,6 +1,8 @@
-import axios from 'axios';
+import axios from "axios";
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+// Base URL should NOT include /api - it's added in axios instance
+const API_URL =
+    import.meta.env.VITE_API_URL || "https://chatapp-backend-cl5g.onrender.com";
 
 // Create axios instance
 const api = axios.create({
@@ -10,7 +12,7 @@ const api = axios.create({
 // Add token to requests
 api.interceptors.request.use(
     (config) => {
-        const token = localStorage.getItem('token');
+        const token = localStorage.getItem("token");
         if (token) {
             config.headers.Authorization = `Bearer ${token}`;
         }
@@ -31,20 +33,23 @@ api.interceptors.response.use(
             originalRequest._retry = true;
 
             try {
-                const refreshToken = localStorage.getItem('refreshToken');
-                const response = await axios.post(`${API_URL}/api/auth/refresh`, {
-                    refreshToken,
-                });
+                const refreshToken = localStorage.getItem("refreshToken");
+                const response = await axios.post(
+                    `${API_URL}/api/auth/refresh`,
+                    {
+                        refreshToken,
+                    }
+                );
 
                 const { token } = response.data;
-                localStorage.setItem('token', token);
+                localStorage.setItem("token", token);
 
                 originalRequest.headers.Authorization = `Bearer ${token}`;
                 return api(originalRequest);
             } catch (error) {
-                localStorage.removeItem('token');
-                localStorage.removeItem('refreshToken');
-                window.location.href = '/login';
+                localStorage.removeItem("token");
+                localStorage.removeItem("refreshToken");
+                window.location.href = "/login";
                 return Promise.reject(error);
             }
         }
@@ -54,4 +59,3 @@ api.interceptors.response.use(
 );
 
 export default api;
-
