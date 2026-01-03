@@ -30,7 +30,6 @@ const Sidebar = () => {
     return chatName.toLowerCase().includes(searchQuery.toLowerCase());
   });
 
-  // Handle logout
   const handleLogout = async () => {
     await logout();
   };

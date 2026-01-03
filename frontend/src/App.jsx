@@ -3,7 +3,6 @@ import { useEffect } from 'react';
 import { useAuthStore } from './store/authStore';
 import { useThemeStore } from './store/themeStore';
 
-// Pages
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Chat from './pages/Chat';
@@ -18,7 +17,6 @@ function App() {
   }, [checkAuth]);
 
   useEffect(() => {
-    // Apply theme to document
     if (theme === 'dark') {
       document.documentElement.classList.add('dark');
     } else {
