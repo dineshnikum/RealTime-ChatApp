@@ -1,6 +1,7 @@
 import { create } from 'zustand';
 import api from '../services/api';
 import toast from 'react-hot-toast';
+import { useChatStore } from './chatStore';
 
 /**
  * Message Store using Zustand
@@ -38,6 +39,13 @@ export const useMessageStore = create((set, get) => ({
       const newMessage = response.data;
 
       set({ messages: [...get().messages, newMessage] });
+      
+      // Update chat's latest message and move to top
+      useChatStore.getState().updateChat(chatId, {
+        latestMessage: newMessage,
+      });
+      useChatStore.getState().moveChatToTop(chatId);
+      
       return newMessage;
     } catch (error) {
       console.error('Send message error:', error);
